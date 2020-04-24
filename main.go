@@ -51,7 +51,7 @@ func saveKeyHandler(writer http.ResponseWriter, req *http.Request) {
 	home := os.Getenv("HOME")
 	key := fmt.Sprintf("%s/.ssh/id_ed25519-cert.pub", home)
 	log.Printf("begin to write data into %s", key)
-	fd, err := os.OpenFile(key, os.O_WRONLY, 0644)
+	fd, err := os.OpenFile(key, os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
 		writer.WriteHeader(http.StatusInternalServerError)
 		return
