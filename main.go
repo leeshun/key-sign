@@ -37,6 +37,7 @@ func pubKeyHandler(writer http.ResponseWriter, _ *http.Request) {
 		writer.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	writer.Header().Set("Access-Control-Allow-Origin", "*")
 	writer.WriteHeader(http.StatusOK)
 	_, _ = writer.Write(data)
 }
@@ -62,5 +63,6 @@ func saveKeyHandler(writer http.ResponseWriter, req *http.Request) {
 		writer.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	writer.Header().Set("Access-Control-Allow-Origin", "*")
 	writer.WriteHeader(http.StatusOK)
 }
